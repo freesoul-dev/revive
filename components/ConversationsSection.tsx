@@ -1,7 +1,7 @@
 import Link from 'next/link'
 
 // Conversations image
-const conversationsImage = '/images/conversations/conversations-2.JPG'
+const conversationsImage = '/images/conversations/conversations-2.jpg'
 
 export default function ConversationsSection() {
   return (
