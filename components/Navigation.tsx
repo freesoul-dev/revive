@@ -2,9 +2,12 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 
 export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false)
+  const pathname = usePathname()
+  const isHomePage = pathname === '/'
 
   useEffect(() => {
     const handleScroll = () => {
@@ -14,10 +17,31 @@ export default function Navigation() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  useEffect(() => {
+    // Handle hash navigation when coming from external pages
+    if (isHomePage && window.location.hash) {
+      const hash = window.location.hash.substring(1)
+      setTimeout(() => {
+        const element = document.getElementById(hash)
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' })
+        }
+      }, 100)
+    }
+  }, [isHomePage])
+
   const scrollToSection = (id: string) => {
-    const element = document.getElementById(id)
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
+    if (isHomePage) {
+      const element = document.getElementById(id)
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' })
+      }
+    }
+  }
+
+  const handleSectionClick = (id: string) => {
+    if (isHomePage) {
+      scrollToSection(id)
     }
   }
 
@@ -31,28 +55,52 @@ export default function Navigation() {
     >
       <div className="container-max px-4 md:px-8">
         <div className="flex items-center justify-between py-4">
-          <button
-            onClick={() => scrollToSection('landing')}
-            className="text-2xl md:text-3xl font-serif text-black hover:text-black transition-colors"
-            //style={{ textShadow: '2px 2px 6px rgba(0, 0, 0, 0.5), 0 0 15px rgba(255, 255, 255, 0.3)' }}
-          >
-            rev'ive
-          </button>
+          {isHomePage ? (
+            <button
+              onClick={() => scrollToSection('landing')}
+              className="text-2xl md:text-3xl font-serif text-black hover:text-black transition-colors"
+            >
+              rev'ive
+            </button>
+          ) : (
+            <Link
+              href="/"
+              className="text-2xl md:text-3xl font-serif text-black hover:text-black transition-colors"
+            >
+              rev'ive
+            </Link>
+          )}
           <div className="flex items-center gap-4 md:gap-6">
-            <button
-              onClick={() => scrollToSection('offerings')}
-              className="text-base md:text-lg text-black hover:text-black transition-colors"
-              //style={{ textShadow: '2px 2px 6px rgba(0, 0, 0, 0.5), 0 0 15px rgba(255, 255, 255, 0.3)' }}
-            >
-              Offerings
-            </button>
-            <button
-              onClick={() => scrollToSection('about')}
-              className="text-base md:text-lg text-black hover:text-black transition-colors"
-              //style={{ textShadow: '2px 2px 6px rgba(0, 0, 0, 0.5), 0 0 15px rgba(255, 255, 255, 0.3)' }}
-            >
-              About
-            </button>
+            {isHomePage ? (
+              <button
+                onClick={() => handleSectionClick('offerings')}
+                className="text-base md:text-lg text-black hover:text-black transition-colors"
+              >
+                Offerings
+              </button>
+            ) : (
+              <Link
+                href="/#offerings"
+                className="text-base md:text-lg text-black hover:text-black transition-colors"
+              >
+                Offerings
+              </Link>
+            )}
+            {isHomePage ? (
+              <button
+                onClick={() => handleSectionClick('about')}
+                className="text-base md:text-lg text-black hover:text-black transition-colors"
+              >
+                About
+              </button>
+            ) : (
+              <Link
+                href="/#about"
+                className="text-base md:text-lg text-black hover:text-black transition-colors"
+              >
+                About
+              </Link>
+            )}
             <Link
               href="/contact"
               className="text-base md:text-lg text-black hover:text-black transition-colors"

@@ -21,7 +21,7 @@ interface Cohort {
 const cohorts: Cohort[] = [
   {
     id: 'cohort-1',
-    name: 'Cohort One Participants',
+    name: '1st Cohort',
     liberators: [
       {
         id: '1',
@@ -200,7 +200,7 @@ export default function LiberatorsSection() {
                       <h3 className="text-2xl font-serif text-black pr-2">
                         {liberator.name}
                       </h3>
-                      <button
+                      {/* <button
                         onClick={() => toggleBio(liberator.id)}
                         className="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 text-black transition-colors"
                         aria-label={isExpanded ? 'Hide bio' : 'Show bio'}
@@ -209,7 +209,7 @@ export default function LiberatorsSection() {
                         <span className="text-xl font-light">
                           {isExpanded ? '−' : '+'}
                         </span>
-                      </button>
+                      </button> */}
                     </div>
                     {isExpanded && (
                       <p className="text-black leading-relaxed mt-3">
