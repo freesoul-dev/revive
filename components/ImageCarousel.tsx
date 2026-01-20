@@ -35,8 +35,8 @@ export default function ImageCarousel({ images, alt = 'Carousel image', classNam
 
   if (images.length === 0) {
     return (
-      <div className={`relative h-96 rounded-lg overflow-hidden bg-earth-200 ${className}`}>
-        <div className="w-full h-full flex items-center justify-center text-earth-500">
+      <div className={`relative h-96 rounded-lg overflow-hidden bg-gray-200 ${className}`}>
+        <div className="w-full h-full flex items-center justify-center text-black">
           No images available
         </div>
       </div>
@@ -59,7 +59,7 @@ export default function ImageCarousel({ images, alt = 'Carousel image', classNam
         <>
           <button
             onClick={goToPrevious}
-            className="absolute left-4 top-1/2 -translate-y-1/2 bg-earth-900/50 hover:bg-earth-900/70 text-white rounded-full p-2 transition-colors z-10"
+            className="absolute left-4 top-1/2 -translate-y-1/2 bg-gray-900/50 hover:bg-gray-900/70 text-white rounded-full p-2 transition-colors z-10"
             aria-label="Previous image"
           >
             <svg
@@ -78,7 +78,7 @@ export default function ImageCarousel({ images, alt = 'Carousel image', classNam
           </button>
           <button
             onClick={goToNext}
-            className="absolute right-4 top-1/2 -translate-y-1/2 bg-earth-900/50 hover:bg-earth-900/70 text-white rounded-full p-2 transition-colors z-10"
+            className="absolute right-4 top-1/2 -translate-y-1/2 bg-gray-900/50 hover:bg-gray-900/70 text-white rounded-full p-2 transition-colors z-10"
             aria-label="Next image"
           >
             <svg

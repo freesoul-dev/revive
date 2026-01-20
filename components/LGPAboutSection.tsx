@@ -1,13 +1,13 @@
 export default function LGPAboutSection() {
   return (
-    <section className="section-padding bg-earth-50">
+    <section className="section-padding bg-gray-50">
       <div className="container-max">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-5xl md:text-6xl font-serif text-earth-800 mb-8 text-center">
+          <h1 className="text-5xl md:text-6xl font-serif text-black mb-8 text-center">
             Liberation Genealogy Project
           </h1>
           
-          <div className="prose prose-lg max-w-none space-y-6 text-earth-700 leading-relaxed">
+          <div className="prose prose-lg max-w-none space-y-6 text-black leading-relaxed">
             <p>
               the liberation genealogy project (lgp) is a movement. we're committed to gathering black people of african descent in pittsburgh and beyond, of all ages and backgrounds to reclaim our narratives. we believe our ancestors include those of blood and spirit, those chosen, and biological. we recognize the unique challenges black genealogy presents, and we create space to learn together and provide support and resources to navigate what arises.
             </p>
@@ -21,10 +21,10 @@ export default function LGPAboutSection() {
             </p>
             
             <p>
-              liberation genealogy cohort #1 has completed their journey! gratitude to all who participated in this inaugural exploration. the exhibition featuring their work is currently on view through december 5, 2025 in pittsburgh, pa. to visit or learn more, contact me directly. cohort #2 is on the horizon, pending funding. stay connected for updates!
+              liberation genealogy cohort #1 has completed their journey! gratitude to all who participated in this inaugural exploration. the exhibition featuring their work is currently on view through december 5, 2025 in pittsburgh, pa. to visit or learn more, contact me directly. cohort #2 is on the horizon. stay connected for updates!
             </p>
             
-            <blockquote className="border-l-4 border-terracotta-500 pl-6 italic text-earth-800 text-xl my-8">
+            <blockquote className="border-l-4 border-gray-500 pl-6 italic text-black text-xl my-8">
               "the more you know of your history the more liberated you are." <span className="not-italic">— Maya Angelou</span>
             </blockquote>
           </div>
