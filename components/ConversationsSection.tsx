@@ -12,7 +12,7 @@ export default function ConversationsSection() {
             <img
               src={conversationsImage}
               alt="Conversations"
-              className="w-full h-auto object-contain"
+              className="w-full h-auto object-contain rounded-lg"
             />
           </div>
           

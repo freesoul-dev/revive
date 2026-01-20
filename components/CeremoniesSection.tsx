@@ -52,7 +52,7 @@ export default function CeremoniesSection() {
             <img
               src={ceremoniesImage}
               alt="Ceremonies"
-              className="w-full h-auto object-contain"
+              className="w-full h-auto object-contain rounded-lg"
             />
           </div>
         </div>

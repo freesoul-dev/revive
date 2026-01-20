@@ -64,7 +64,7 @@ export default function AboutSection() {
               <img
                 src="/images/about-image.JPG"
                 alt="About"
-                className="w-full h-auto max-w-md mx-auto object-contain"
+                className="w-full h-auto max-w-md mx-auto object-contain rounded-lg"
               />
             </div>
           </div>

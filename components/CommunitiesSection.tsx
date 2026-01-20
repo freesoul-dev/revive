@@ -52,7 +52,7 @@ export default function CommunitiesSection() {
             <img
               src={communitiesImage}
               alt="Communities"
-              className="w-full h-auto object-contain"
+              className="w-full h-auto object-contain rounded-lg"
             />
           </div>
         </div>
