@@ -49,7 +49,7 @@ const cohorts: Cohort[] = [
       },
       {
         id: '5',
-        name: 'James | Facilitator',
+        name: 'James',
         photo: '/images/liberators/james.png',
         bio: 'Short bio text here...'
       },
@@ -67,7 +67,7 @@ const cohorts: Cohort[] = [
       },
       {
         id: '8',
-        name: 'Shirley | Facilitator',
+        name: 'Shirley',
         photo: '/images/liberators/shirley.jpg',
         bio: 'Short bio text here...'
       },
@@ -103,7 +103,7 @@ const cohorts: Cohort[] = [
       },
       {
         id: '17',
-        name: 'Autumn | Facilitator',
+        name: 'Autumn',
         photo: '/images/liberators/autumn.jpg',
         bio: 'Short bio text here...'
       },
@@ -112,13 +112,7 @@ const cohorts: Cohort[] = [
         name: 'Marcela',
         photo: '/images/liberators/marcela.JPEG',
         bio: 'Short bio text here...'
-      },
-      {
-        id: '19',
-        name: 'Yvette | Creator & Facilitator',
-        photo: '/images/liberators/yvetta.jpg',
-        bio: 'Short bio text here...'
-      },
+      }
     ]
   },
   // Add more cohorts here as needed

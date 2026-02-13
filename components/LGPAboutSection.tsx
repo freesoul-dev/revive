@@ -9,19 +9,30 @@ export default function LGPAboutSection() {
           
           <div className="prose prose-lg max-w-none space-y-6 text-black leading-relaxed">
             <p>
-              the liberation genealogy project (lgp) is a movement. we're committed to gathering black people of african descent in pittsburgh and beyond, of all ages and backgrounds to reclaim our narratives. we believe our ancestors include those of blood and spirit, those chosen, and biological. we recognize the unique challenges black genealogy presents, and we create space to learn together and provide support and resources to navigate what arises.
+              <i>
+                We arrive
+                <br></br>
+                We remember
+                <br></br>
+                We begin again
+              </i>
+            </p>
+            <p>
+              The Liberation Genealogy Project is a living, ceremonial practice rooted in remembrance, creativity, and relationship. It is an offering devoted to Black people of African descent across generations and geographies—an invitation to reclaim lineage, tend to what was broken or obscured, and remember ourselves forward.            
+            </p>
+          
+            <p>
+              This work understands genealogy as more than records and research. Ancestry includes those of blood and spirit, the known and the unnamed, the living and the departed. We gather with care for the particular ruptures carried by Black lineages shaped by enslavement, displacement, and erasure, creating space to meet what arises with gentleness, honesty, and collective support.            
             </p>
             
             <p>
-              more than a workshop, lgp is a community rooted in spirituality, process, and ancestor reverence. a deep sense of gratitude to our ancestors of blood and spirit guides our work. we acknowledge the sacrifices they made and the legacy they left behind. their stories are woven into the very fabric of who we are.
-            </p>
+              Creativity is central to this practice. Participants engage genealogy through research, reflection, ritual, and artistic expression as a way of listening. Making becomes a language for memory, intuition, and embodied knowing.           
+              Cohort 1, the inaugural Liberation Genealogy cohort, gathered in community to explore lineage through study, conversation, and collage-making. These collages were created by participants with and without prior artistic practice that held personal and ancestral stories shaped through the collective process and were later shared publicly in partnership with The Future Is Black.           
             
-            <p>
-              we wouldn't be here without the incredible support of <strong>Opportunity Fund</strong> and the <strong>Pittsburgh Cultural Trust</strong>, <strong>Autumn Redcross</strong> (genealogical research), <strong>Shirley Salmon-Davis, PhD</strong> (mental health support), <strong>James Scott</strong> (chief of all things). and <strong>Njaimeh Njie</strong> (multimedia artist/collage workshop), their contributions are invaluable.
             </p>
-            
+
             <p>
-              liberation genealogy cohort #1 has completed their journey! gratitude to all who participated in this inaugural exploration. the exhibition featuring their work is currently on view through december 5, 2025 in pittsburgh, pa. to visit or learn more, contact me directly. cohort #2 is on the horizon. stay connected for updates!
+            Future cohorts will continue this practice, including work with artists locally and in relationship with artists on the African continent. Liberation Genealogy remains rooted in devotion to Black life, guided by ancestors, and open to what becomes possible when we remember together.
             </p>
             
             <blockquote className="border-l-4 border-gray-500 pl-6 italic text-black text-xl my-8">
