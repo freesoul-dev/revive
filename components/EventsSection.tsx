@@ -6,10 +6,13 @@ import Link from 'next/link'
 interface Event {
   id: string
   title: string
+  subtitle?: string
   about: string
   date: string // ISO date string for comparison
   image: string
   link?: string
+  addlink?: string
+  addlinktext?: string
 }
 
 // Placeholder events - replace with real data
@@ -17,33 +20,23 @@ const events: Event[] = [
 
   {
     id: '1',
-    title: 'Liberation Genealogy Workshop',
-    about: 'Join us for an exploration of ancestral connections and family history.',
-    date: '2026-06-15',
-    image: '/images/events/event-1.jpg',
-    link: 'https://example.com/event1'
+    title: 'A Place to Begin: Liberation Genealogy in Community',
+    subtitle: 'Pittsburgh Racial Justice Summit',
+    about: 'This 90-minute session offers a community-centered introduction to Liberation Genealogy for people of African descent, with particular care for Black participants whose family histories are shaped by enslavement, displacement, and record loss. Participants will learn how to begin genealogical inquiry using what they already know, engaging living relatives, and orienting to foundational research tools, alongside guided reflection and small-group sharing for support and connection. Ancestral veneration is honored through remembrance and acknowledgment; this is not a ritual space.',
+    date: '2026-02-21',
+    image: 'https://lh7-us.googleusercontent.com/BoTgJCbtujfMAxZZDWJc4FNe7j3liXpCA_5Eutgc6e3lPFqO4pyWjVGEj4g5eb7_plGFeaw3EgHeOPy5EMjdVsa9qBw-eUEJSqro0I7IdUymerDD3_8FKDZylPT7y7dkbY0fiaIdNv_3eOgb82wJ6A',
+    addlink: 'https://www.eventbrite.com/e/28th-annual-pittsburgh-racial-justice-summit-tickets-1976990532903',
+    addlinktext: 'Register'
   },
   {
     id: '2',
-    title: 'Community Healing Circle',
-    about: 'A space for collective healing and restorative connection.',
-    date: '2025-05-20',
-    image: '/images/events/event-2.jpg'
-  },
-  {
-    id: '3',
-    title: 'Spiritual Companionship Workshop',
-    about: 'Learn the art of creating space for truth and spiritual growth.',
-    date: '2024-12-10',
-    image: '/images/events/event-3.jpg',
-    link: 'https://example.com/event3'
-  },
-  {
-    id: '4',
-    title: 'Ancestor Reverence Ceremony',
-    about: 'Honoring our ancestors of blood and spirit through ritual and remembrance.',
-    date: '2024-11-05',
-    image: '/images/events/event-4.jpg'
+    title: 'Soul Spa 2026',
+    about: 'Soul Spa is a curated summer weekend retreat, co-facilitated with extraordinary collaborators, devoted to restoration, depth, and elemental presence. We gather for spacious practice, sound, night skies, embodied reflection, and shared rest, while also welcoming the fire energy that calls us toward clarity, courage, and transformation.',
+    date: '2026-07-17',
+    image: '',
+    link: 'https://dharmakayacenter.org/',
+    addlink: 'https://dharmakayacenter.secure.retreat.guru/program/soul-spa-wellness-weekend-for-bipoc-leaders-4/?lang=en',
+    addlinktext: 'Last Year\'s Event'
   },
 ]
 
@@ -94,6 +87,9 @@ export default function EventsSection() {
         <h3 className="text-2xl font-serif text-black mb-3">
           {event.title}
         </h3>
+        <p className="text-md text-gray-600 font-medium">
+          {event.subtitle}
+        </p><br></br>
         <p className="text-black leading-relaxed mb-4">
           {event.about}
         </p>
@@ -107,6 +103,17 @@ export default function EventsSection() {
             Learn More ↗
           </Link>
         )}
+        <br></br>
+        {event.addlink && (
+          <Link
+            href={event.addlink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block text-black hover:text-black underline transition-colors"
+          >
+            {event.addlinktext}↗
+          </Link>
+        )}
       </div>
     </div>
   )
@@ -117,6 +124,10 @@ export default function EventsSection() {
         <h1 className="text-4xl md:text-5xl font-serif text-black text-center mb-16">
           Events
         </h1>
+        <h3 className="text-xl md:text-xl font-serif text-black text-center mb-16">
+        We gather in spaces of rest, inquiry, and relational practice. <br></br>
+        Below are upcoming and past offerings. More are unfolding.
+        </h3>
 
         {/* Upcoming Events */}
         {upcomingEvents.length > 0 && (
