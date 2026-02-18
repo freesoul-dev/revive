@@ -1,13 +1,13 @@
 export default function LGPAboutSection() {
   return (
-    <section className="section-padding bg-gray-50">
+    <section className="section-padding bg-cream">
       <div className="container-max">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-5xl md:text-6xl font-serif text-black mb-8 text-center">
+          <h1 className="text-5xl md:text-6xl font-serif text-charcoal mb-8 text-center">
             Liberation Genealogy Project
           </h1>
           
-          <div className="prose prose-lg max-w-none space-y-6 text-black leading-relaxed">
+          <div className="prose prose-lg max-w-none space-y-6 text-charcoal leading-relaxed">
             <p>
               <i>
                 We arrive
@@ -35,8 +35,8 @@ export default function LGPAboutSection() {
             Future cohorts will continue this practice, including work with artists locally and in relationship with artists on the African continent. Liberation Genealogy remains rooted in devotion to Black life, guided by ancestors, and open to what becomes possible when we remember together.
             </p>
             
-            <blockquote className="border-l-4 border-gray-500 pl-6 italic text-black text-xl my-8">
-              "the more you know of your history the more liberated you are." <span className="not-italic">— Maya Angelou</span>
+            <blockquote className="border-l-4 border-ochre pl-6 italic text-charcoal text-xl my-8">
+              &ldquo;the more you know of your history the more liberated you are.&rdquo; <span className="not-italic">— Maya Angelou</span>
             </blockquote>
           </div>
         </div>
@@ -44,4 +44,3 @@ export default function LGPAboutSection() {
     </section>
   )
 }
-

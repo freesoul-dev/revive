@@ -4,7 +4,7 @@ import Navigation from '@/components/Navigation'
 
 export default function LiberationGenealogyPage() {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen bg-cream">
       <Navigation />
       <LGPAboutSection />
       <LiberatorsSection />

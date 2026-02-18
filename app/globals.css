@@ -4,7 +4,7 @@
 
 @layer base {
   body {
-    @apply bg-white text-black;
+    @apply bg-cream text-charcoal;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   }
   

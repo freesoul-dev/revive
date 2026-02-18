@@ -8,7 +8,8 @@ interface Event {
   title: string
   subtitle?: string
   about: string
-  date: string // ISO date string for comparison
+  date: string     // ISO date string (YYYY-MM-DD) — start date
+  endDate?: string // ISO date string (YYYY-MM-DD) — optional end date for ranges
   image: string
   link?: string
   addlink?: string
@@ -33,6 +34,7 @@ const events: Event[] = [
     title: 'Soul Spa 2026',
     about: 'Soul Spa is a curated summer weekend retreat, co-facilitated with extraordinary collaborators, devoted to restoration, depth, and elemental presence. We gather for spacious practice, sound, night skies, embodied reflection, and shared rest, while also welcoming the fire energy that calls us toward clarity, courage, and transformation.',
     date: '2026-07-17',
+    endDate: '2026-07-19',
     image: '',
     link: 'https://dharmakayacenter.org/',
     addlink: 'https://dharmakayacenter.secure.retreat.guru/program/soul-spa-wellness-weekend-for-bipoc-leaders-4/?lang=en',
@@ -40,38 +42,58 @@ const events: Event[] = [
   },
 ]
 
+// Parse an ISO date string (YYYY-MM-DD) as local midnight to avoid timezone shifts
+const parseLocalDate = (dateString: string) => {
+  const [year, month, day] = dateString.split('-').map(Number)
+  return new Date(year, month - 1, day)
+}
+
+const formatDate = (startString: string, endString?: string) => {
+  const start = parseLocalDate(startString)
+  const opts: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' }
+
+  if (!endString) {
+    return start.toLocaleDateString('en-US', opts)
+  }
+
+  const end = parseLocalDate(endString)
+  const sameYear = start.getFullYear() === end.getFullYear()
+  const sameMonth = sameYear && start.getMonth() === end.getMonth()
+
+  if (sameMonth) {
+    // e.g. "July 17–20, 2026"
+    return `${start.toLocaleDateString('en-US', { month: 'long', day: 'numeric' })}–${end.getDate()}, ${end.getFullYear()}`
+  } else if (sameYear) {
+    // e.g. "July 31 – August 3, 2026"
+    return `${start.toLocaleDateString('en-US', { month: 'long', day: 'numeric' })} – ${end.toLocaleDateString('en-US', { month: 'long', day: 'numeric' })}, ${end.getFullYear()}`
+  } else {
+    // e.g. "December 30, 2025 – January 2, 2026"
+    return `${start.toLocaleDateString('en-US', opts)} – ${end.toLocaleDateString('en-US', opts)}`
+  }
+}
+
 export default function EventsSection() {
   const today = new Date()
   today.setHours(0, 0, 0, 0)
 
+  // Use endDate if present to determine past/upcoming; event is "past" only after its last day
   const upcomingEvents = events
     .filter(event => {
-      const eventDate = new Date(event.date)
-      eventDate.setHours(0, 0, 0, 0)
-      return eventDate >= today
+      const compareDate = parseLocalDate(event.endDate ?? event.date)
+      return compareDate >= today
     })
-    .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime())
+    .sort((a, b) => parseLocalDate(a.date).getTime() - parseLocalDate(b.date).getTime())
 
   const pastEvents = events
     .filter(event => {
-      const eventDate = new Date(event.date)
-      eventDate.setHours(0, 0, 0, 0)
-      return eventDate < today
+      const compareDate = parseLocalDate(event.endDate ?? event.date)
+      return compareDate < today
     })
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-
-  const formatDate = (dateString: string) => {
-    const date = new Date(dateString)
-    return date.toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    })
-  }
+    .sort((a, b) => parseLocalDate(b.date).getTime() - parseLocalDate(a.date).getTime())
 
   const EventCard = ({ event }: { event: Event }) => (
-    <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-shadow">
-      <div className="relative h-48 bg-gray-200">
+    <div className="bg-cream-light rounded-lg shadow-sm border border-cream-dark overflow-hidden hover:shadow-md transition-shadow">
+      <div className="relative h-48 bg-cream-dark">
         <img
           src={event.image}
           alt={event.title}
@@ -80,17 +102,17 @@ export default function EventsSection() {
       </div>
       <div className="p-6">
         <div className="mb-3">
-          <p className="text-sm text-gray-600 font-medium">
-            {formatDate(event.date)}
+          <p className="text-sm text-charcoal-muted font-medium">
+            {formatDate(event.date, event.endDate)}
           </p>
         </div>
-        <h3 className="text-2xl font-serif text-black mb-3">
+        <h3 className="text-2xl font-serif text-charcoal mb-3">
           {event.title}
         </h3>
-        <p className="text-md text-gray-600 font-medium">
+        <p className="text-md text-charcoal-muted font-medium">
           {event.subtitle}
         </p><br></br>
-        <p className="text-black leading-relaxed mb-4">
+        <p className="text-charcoal leading-relaxed mb-4">
           {event.about}
         </p>
         {event.link && (
@@ -98,7 +120,7 @@ export default function EventsSection() {
             href={event.link}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block text-black hover:text-black underline transition-colors"
+            className="inline-block text-terracotta hover:text-terracotta-dark underline transition-colors"
           >
             Learn More ↗
           </Link>
@@ -109,7 +131,7 @@ export default function EventsSection() {
             href={event.addlink}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block text-black hover:text-black underline transition-colors"
+            className="inline-block text-terracotta hover:text-terracotta-dark underline transition-colors"
           >
             {event.addlinktext}↗
           </Link>
@@ -119,25 +141,36 @@ export default function EventsSection() {
   )
 
   return (
-    <section className="section-padding bg-gray-50">
+    <section className="bg-cream">
+      {/* Hero header with background image */}
+      <div
+        className="relative flex flex-col items-center justify-center py-32 px-4 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: "url('/images/background.png')" }}
+      >
+        <div className="absolute inset-0 bg-cream/80"></div>
+        <div className="relative z-10 text-center">
+          <h1 className="text-5xl md:text-7xl font-serif text-charcoal mb-6">
+            Events
+          </h1>
+          <h3 className="text-xl font-serif text-charcoal max-w-2xl mx-auto leading-relaxed">
+            We gather in spaces of rest, inquiry, and relational practice.<br />
+            Below are upcoming and past offerings. More are unfolding.
+          </h3>
+        </div>
+      </div>
+
+      <div className="section-padding">
       <div className="container-max">
-        <h1 className="text-4xl md:text-5xl font-serif text-black text-center mb-16">
-          Events
-        </h1>
-        <h3 className="text-xl md:text-xl font-serif text-black text-center mb-16">
-        We gather in spaces of rest, inquiry, and relational practice. <br></br>
-        Below are upcoming and past offerings. More are unfolding.
-        </h3>
 
         {/* Upcoming Events */}
         {upcomingEvents.length > 0 && (
           <div className="mb-16">
             <div className="flex items-center gap-4 mb-8">
-              <h2 className="text-3xl md:text-4xl font-serif text-black">
+              <h2 className="text-3xl md:text-4xl font-serif text-charcoal">
                 Upcoming
               </h2>
-              <div className="flex-1 h-px bg-gray-300"></div>
-              <span className="text-sm text-gray-600 bg-gray-100 px-3 py-1 rounded-full">
+              <div className="flex-1 h-px bg-cream-dark"></div>
+              <span className="text-sm text-charcoal-muted bg-cream-dark px-3 py-1 rounded-full">
                 {upcomingEvents.length}
               </span>
             </div>
@@ -153,11 +186,11 @@ export default function EventsSection() {
         {pastEvents.length > 0 && (
           <div>
             <div className="flex items-center gap-4 mb-8">
-              <h2 className="text-3xl md:text-4xl font-serif text-black">
+              <h2 className="text-3xl md:text-4xl font-serif text-charcoal">
                 Past
               </h2>
-              <div className="flex-1 h-px bg-gray-300"></div>
-              <span className="text-sm text-gray-600 bg-gray-100 px-3 py-1 rounded-full">
+              <div className="flex-1 h-px bg-cream-dark"></div>
+              <span className="text-sm text-charcoal-muted bg-cream-dark px-3 py-1 rounded-full">
                 {pastEvents.length}
               </span>
             </div>
@@ -174,11 +207,12 @@ export default function EventsSection() {
         {/* No Events Message */}
         {upcomingEvents.length === 0 && pastEvents.length === 0 && (
           <div className="text-center py-12">
-            <p className="text-lg text-black italic">
+            <p className="text-lg text-charcoal italic">
               No events scheduled at this time. Check back soon!
             </p>
           </div>
         )}
+      </div>
       </div>
     </section>
   )

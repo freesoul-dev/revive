@@ -1,8 +1,6 @@
 import LandingSection from '@/components/LandingSection'
 import OfferingsSection from '@/components/OfferingsSection'
-import CeremoniesSection from '@/components/CeremoniesSection'
-import ConversationsSection from '@/components/ConversationsSection'
-import CommunitiesSection from '@/components/CommunitiesSection'
+import OfferingsRiver from '@/components/OfferingsRiver'
 import PartnersSection from '@/components/PartnersSection'
 import AboutSection from '@/components/AboutSection'
 import Footer from '@/components/Footer'
@@ -13,9 +11,7 @@ export default function Home() {
     <main className="min-h-screen">
       <LandingSection />
       <OfferingsSection />
-      <CeremoniesSection />
-      <ConversationsSection />
-      <CommunitiesSection />
+      <OfferingsRiver />
       <PartnersSection />
       <AboutSection />
       <Footer />
@@ -23,4 +19,3 @@ export default function Home() {
     </main>
   )
 }
-

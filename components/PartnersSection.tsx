@@ -1,3 +1,5 @@
+import ScrollReveal from './ScrollReveal'
+
 // Partner data structure
 interface Partner {
   id: string
@@ -36,43 +38,49 @@ const partners: Partner[] = [
 
 export default function PartnersSection() {
   return (
-    <section className="section-padding bg-gray-100">
+    <section className="section-padding bg-cream">
       <div className="container-max">
-        <h2 className="text-4xl md:text-5xl font-serif text-black text-center mb-8">
-          Partners
-        </h2>
-        
+        <ScrollReveal direction="up">
+          <h2 className="text-4xl md:text-5xl font-serif text-charcoal text-center mb-8">
+            Partners
+          </h2>
+        </ScrollReveal>
+
         <div className="max-w-3xl mx-auto mb-12 space-y-4">
-          <p className="text-lg text-black text-center leading-relaxed">
-            We are grateful for the partnerships that enable our work and amplify our impact.
-          </p>
-          <p className="text-lg text-black text-center leading-relaxed">
-            These long-standing collaborators share our commitment to creating spaces for healing, connection, and transformation.
-          </p>
+          <ScrollReveal direction="up" delay={100}>
+            <p className="text-lg text-charcoal text-center leading-relaxed">
+              We are grateful for the partnerships that enable our work and amplify our impact.
+            </p>
+          </ScrollReveal>
+          <ScrollReveal direction="up" delay={180}>
+            <p className="text-lg text-charcoal text-center leading-relaxed">
+              These long-standing collaborators share our commitment to creating spaces for healing, connection, and transformation.
+            </p>
+          </ScrollReveal>
         </div>
-        
+
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center justify-items-center max-w-5xl mx-auto">
-          {partners.map((partner) => (
-            <a
-              key={partner.id}
-              href={partner.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group transition-opacity hover:opacity-80"
-              aria-label={`Visit ${partner.name}`}
-            >
-              <div className="relative w-full h-32 bg-white rounded-lg shadow-sm border border-gray-200 flex items-center justify-center p-4 group-hover:shadow-md transition-shadow">
-                <img
-                  src={partner.logo}
-                  alt={partner.name}
-                  className="max-w-full max-h-full object-contain"
-                />
-              </div>
-            </a>
+          {partners.map((partner, i) => (
+            <ScrollReveal key={partner.id} direction="up" delay={i * 100}>
+              <a
+                href={partner.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group transition-opacity hover:opacity-80"
+                aria-label={`Visit ${partner.name}`}
+              >
+                <div className="relative w-full h-32 bg-white rounded-lg shadow-sm border border-cream-dark flex items-center justify-center p-4 group-hover:shadow-md transition-shadow">
+                  <img
+                    src={partner.logo}
+                    alt={partner.name}
+                    className="max-w-full max-h-full object-contain"
+                  />
+                </div>
+              </a>
+            </ScrollReveal>
           ))}
         </div>
       </div>
     </section>
   )
 }
-

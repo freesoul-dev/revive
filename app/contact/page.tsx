@@ -6,9 +6,9 @@ export default function ContactPage() {
   return (
     <main className="min-h-screen">
       <Navigation />
-      <section className="section-padding bg-gray-50">
+      <section className="section-padding bg-cream">
         <div className="container-max">
-          <h1 className="text-4xl md:text-5xl font-serif text-black text-center mb-12">
+          <h1 className="text-4xl md:text-5xl font-serif text-charcoal text-center mb-12">
             Let's Connect
           </h1>
           <InquiryForm />

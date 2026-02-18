@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation'
 
 export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
   const pathname = usePathname()
   const isHomePage = pathname === '/'
 
@@ -18,7 +19,9 @@ export default function Navigation() {
   }, [])
 
   useEffect(() => {
-    // Handle hash navigation when coming from external pages
+    // Handle hash navigation when coming from an external page (e.g. /contact → /#offerings).
+    // After scrolling we clear the hash from the URL so that a subsequent reload
+    // does NOT re-trigger the jump and always starts at the top.
     if (isHomePage && window.location.hash) {
       const hash = window.location.hash.substring(1)
       setTimeout(() => {
@@ -26,9 +29,16 @@ export default function Navigation() {
         if (element) {
           element.scrollIntoView({ behavior: 'smooth' })
         }
-      }, 100)
+        // Remove the hash so reloads always land at the top
+        history.replaceState(null, '', '/')
+      }, 150)
     }
   }, [isHomePage])
+
+  // Close menu when route changes
+  useEffect(() => {
+    setMenuOpen(false)
+  }, [pathname])
 
   const scrollToSection = (id: string) => {
     if (isHomePage) {
@@ -37,91 +47,128 @@ export default function Navigation() {
         element.scrollIntoView({ behavior: 'smooth' })
       }
     }
+    setMenuOpen(false)
   }
 
   const handleSectionClick = (id: string) => {
     if (isHomePage) {
       scrollToSection(id)
+    } else {
+      setMenuOpen(false)
     }
   }
+
+  const navLinks = [
+    { label: 'Home',      href: '/',           sectionId: 'landing'   },
+    { label: 'Offerings', href: '/#offerings', sectionId: 'offerings' },
+    { label: 'About',     href: '/#about',     sectionId: 'about'     },
+    { label: 'Contact',   href: '/contact',    sectionId: null        },
+    { label: 'LGP',       href: '/liberation-genealogy', sectionId: null },
+    { label: 'Events',    href: '/events',     sectionId: null        },
+  ]
+
+  const scrolledOrOpen = isScrolled || menuOpen
 
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? 'bg-gray-50 backdrop-blur-sm shadow-md'
-          : 'bg-transparent'
+        scrolledOrOpen ? 'bg-cream shadow-md' : 'bg-transparent'
       }`}
     >
       <div className="container-max px-4 md:px-8">
         <div className="flex items-center justify-between py-4">
+          {/* Logo / Home link */}
           {isHomePage ? (
             <button
               onClick={() => scrollToSection('landing')}
-              className="text-2xl md:text-3xl font-serif text-black hover:text-black transition-colors"
+              className="text-2xl md:text-3xl font-serif text-charcoal hover:text-terracotta transition-colors"
             >
-              rev'ive
+              rev&apos;ive
             </button>
           ) : (
             <Link
               href="/"
-              className="text-2xl md:text-3xl font-serif text-black hover:text-black transition-colors"
+              className="text-2xl md:text-3xl font-serif text-charcoal hover:text-terracotta transition-colors"
             >
-              rev'ive
+              rev&apos;ive
             </Link>
           )}
-          <div className="flex items-center gap-4 md:gap-6">
-            {isHomePage ? (
-              <button
-                onClick={() => handleSectionClick('offerings')}
-                className="text-base md:text-lg text-black hover:text-black transition-colors"
-              >
-                Offerings
-              </button>
-            ) : (
-              <Link
-                href="/#offerings"
-                className="text-base md:text-lg text-black hover:text-black transition-colors"
-              >
-                Offerings
-              </Link>
+
+          {/* Desktop nav links */}
+          <div className="hidden md:flex items-center gap-6">
+            {navLinks.map((link) =>
+              link.sectionId && isHomePage ? (
+                <button
+                  key={link.label}
+                  onClick={() => scrollToSection(link.sectionId!)}
+                  className="text-base md:text-lg text-charcoal hover:text-terracotta transition-colors"
+                >
+                  {link.label}
+                </button>
+              ) : (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  className="text-base md:text-lg text-charcoal hover:text-terracotta transition-colors"
+                >
+                  {link.label}
+                </Link>
+              )
             )}
-            {isHomePage ? (
-              <button
-                onClick={() => handleSectionClick('about')}
-                className="text-base md:text-lg text-black hover:text-black transition-colors"
-              >
-                About
-              </button>
-            ) : (
-              <Link
-                href="/#about"
-                className="text-base md:text-lg text-black hover:text-black transition-colors"
-              >
-                About
-              </Link>
+          </div>
+
+          {/* Mobile hamburger button */}
+          <button
+            className="md:hidden flex flex-col justify-center items-center w-8 h-8 gap-1.5"
+            onClick={() => setMenuOpen((prev) => !prev)}
+            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={menuOpen}
+          >
+            <span
+              className={`block w-6 h-0.5 bg-charcoal transition-all duration-300 ${
+                menuOpen ? 'rotate-45 translate-y-2' : ''
+              }`}
+            />
+            <span
+              className={`block w-6 h-0.5 bg-charcoal transition-all duration-300 ${
+                menuOpen ? 'opacity-0' : ''
+              }`}
+            />
+            <span
+              className={`block w-6 h-0.5 bg-charcoal transition-all duration-300 ${
+                menuOpen ? '-rotate-45 -translate-y-2' : ''
+              }`}
+            />
+          </button>
+        </div>
+
+        {/* Mobile dropdown menu */}
+        <div
+          className={`md:hidden overflow-hidden transition-all duration-300 ${
+            menuOpen ? 'max-h-96 pb-4' : 'max-h-0'
+          }`}
+        >
+          <div className="flex flex-col gap-4 pt-2 border-t border-cream-dark">
+            {navLinks.map((link) =>
+              link.sectionId && isHomePage ? (
+                <button
+                  key={link.label}
+                  onClick={() => handleSectionClick(link.sectionId!)}
+                  className="text-lg text-charcoal text-left px-1 py-1 hover:text-terracotta transition-colors"
+                >
+                  {link.label}
+                </button>
+              ) : (
+                <Link
+                  key={link.label}
+                  href={link.href}
+                  onClick={() => setMenuOpen(false)}
+                  className="text-lg text-charcoal px-1 py-1 hover:text-terracotta transition-colors"
+                >
+                  {link.label}
+                </Link>
+              )
             )}
-            <Link
-              href="/contact"
-              className="text-base md:text-lg text-black hover:text-black transition-colors"
-              //style={{ textShadow: '2px 2px 6px rgba(0, 0, 0, 0.5), 0 0 15px rgba(255, 255, 255, 0.3)' }}
-            >
-              Contact
-            </Link>
-            <Link
-              href="/liberation-genealogy"
-              className="text-base md:text-lg text-black hover:text-black transition-colors"
-              //style={{ textShadow: '2px 2px 6px rgba(0, 0, 0, 0.5), 0 0 15px rgba(255, 255, 255, 0.3)' }}
-            >
-              LGP
-            </Link>
-            <Link
-              href="/events"
-              className="text-base md:text-lg text-black hover:text-black transition-colors"
-              //style={{ textShadow: '2px 2px 6px rgba(0, 0, 0, 0.5), 0 0 15px rgba(255, 255, 255, 0.3)' }}
-            >
-              Events
-            </Link>
           </div>
         </div>
       </div>
