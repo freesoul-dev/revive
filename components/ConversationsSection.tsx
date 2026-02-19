@@ -54,10 +54,10 @@ export default function ConversationsSection() {
               {cards.map((card, i) => (
                 <ScrollReveal key={card.label} direction="up" delay={100 + i * 80}>
                   <div className="bg-cream-light rounded-lg border border-cream-dark p-4 h-full">
-                    <h3 className="text-sm font-semibold uppercase tracking-widest text-terracotta mb-2">
+                    <h3 className="text-sm md:text-sm font-semibold uppercase tracking-widest text-terracotta mb-2">
                       {card.label}
                     </h3>
-                    <p className="text-lg text-charcoal leading-relaxed">{card.text}</p>
+                    <p className="text-sm md:text-lg text-charcoal leading-relaxed">{card.text}</p>
                   </div>
                 </ScrollReveal>
               ))}
