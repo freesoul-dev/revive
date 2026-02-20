@@ -25,17 +25,17 @@ const events: Event[] = [
     subtitle: 'Pittsburgh Racial Justice Summit',
     about: 'This 90-minute session offers a community-centered introduction to Liberation Genealogy for people of African descent, with particular care for Black participants whose family histories are shaped by enslavement, displacement, and record loss. Participants will learn how to begin genealogical inquiry using what they already know, engaging living relatives, and orienting to foundational research tools, alongside guided reflection and small-group sharing for support and connection. Ancestral veneration is honored through remembrance and acknowledgment; this is not a ritual space.',
     date: '2026-02-21',
-    image: 'https://lh7-us.googleusercontent.com/BoTgJCbtujfMAxZZDWJc4FNe7j3liXpCA_5Eutgc6e3lPFqO4pyWjVGEj4g5eb7_plGFeaw3EgHeOPy5EMjdVsa9qBw-eUEJSqro0I7IdUymerDD3_8FKDZylPT7y7dkbY0fiaIdNv_3eOgb82wJ6A',
+    image: '/images/events/PRJS2026.jpg',
     addlink: 'https://www.eventbrite.com/e/28th-annual-pittsburgh-racial-justice-summit-tickets-1976990532903',
     addlinktext: 'Register'
   },
   {
     id: '2',
-    title: 'Soul Spa 2026',
+    title: 'Soul Spa Wellness Weekend for BIPOC Leaders',
     about: 'Soul Spa is a curated summer weekend retreat, co-facilitated with extraordinary collaborators, devoted to restoration, depth, and elemental presence. We gather for spacious practice, sound, night skies, embodied reflection, and shared rest, while also welcoming the fire energy that calls us toward clarity, courage, and transformation.',
     date: '2026-07-17',
     endDate: '2026-07-19',
-    image: '',
+    image: '/images/events/soulspa2026.JPG',
     link: 'https://dharmakayacenter.org/',
     addlink: 'https://dharmakayacenter.secure.retreat.guru/program/soul-spa-wellness-weekend-for-bipoc-leaders-4/?lang=en',
     addlinktext: 'Last Year\'s Event'

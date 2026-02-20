@@ -24,7 +24,8 @@ const collaborators: Collaborator[] = [
     id: '2',
     name: 'Shirley Salmon-Davis, PsyD',
     photo: '/images/collaborators/shirley.png',
-    link:'https://mudita.rest/'
+    link:'https://mudita.rest/',
+    bio: 'Visit Shirley\'s website for more information.',
   },
   {
     id: '3',
@@ -65,7 +66,7 @@ export default function AboutSection() {
             <h3 className="text-2xl font-serif text-charcoal mb-4">yvette shipman (rev. ivé)</h3>
             <h4 className="text-xl font-serif text-charcoal mb-4">Founder</h4>
             <p className="text-lg text-charcoal leading-relaxed">
-            Reverend yvette shipman—also known as Rev. ivé and dear one—is an interspiritual minister, facilitator, and founder of Rev ivé, a practice devoted to collective healing and restorative connection. She holds a B.A. in Television and Video Production and an M.A. in Social and Public Policy with a focus on conflict mediation and peace studies. Her work has been shaped by decades of global experience, including consulting with the United Nations Foundation&apos;s Peace on Purpose program.            <br></br><br></br>
+            Reverend yvette shipman—also known as rev. ivé and dear one, is an interspiritual minister, facilitator, and founder of rev ivé, a practice devoted to collective healing and restorative connection. She holds a B.A. in Television and Video Production and an M.A. in Social and Public Policy with a focus on conflict mediation and peace studies. Her work has been shaped by decades of global experience, including consulting with the United Nations Foundation&apos;s Peace on Purpose program.            <br></br><br></br>
             yvette is the founder and steward of the Liberation Genealogy Project, an ancestral practice of re-membering that weaves ritual, inquiry, and accountability to tend the psycho-somatic and epigenetic legacies we carry. Her work centers people of African descent while remaining open to all willing to engage the deep labor of care, truth, and humanity-preserving relationship.
             <br></br><br></br>
             She is currently completing Reiki certification, having studied through the Godmothers of MINKA brooklyn, and brings this lineage of care into her work. yvette also serves as a Program Officer at Opportunity Fund.            </p>
@@ -136,7 +137,7 @@ export default function AboutSection() {
           
           <div className="text-center mt-12">
             <p className="text-lg text-charcoal leading-relaxed">
-              Interested in joining Rev&apos;Ive as a fellow or collaborator?{' '}
+              Interested in joining rev&apos;ive as a fellow or collaborator?{' '}
               <Link
                 href="/contact"
                 className="text-terracotta hover:text-terracotta-dark underline transition-colors"

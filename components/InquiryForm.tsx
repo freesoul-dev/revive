@@ -2,6 +2,8 @@
 
 import { useState } from 'react'
 
+type Status = 'idle' | 'submitting' | 'success' | 'error'
+
 export default function InquiryForm() {
   const [formData, setFormData] = useState({
     name: '',
@@ -11,6 +13,8 @@ export default function InquiryForm() {
     question2: '',
     question3: '',
   })
+  const [status, setStatus] = useState<Status>('idle')
+  const [errorMsg, setErrorMsg] = useState('')
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({
@@ -19,11 +23,29 @@ export default function InquiryForm() {
     })
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Handle form submission here
-    console.log('Form submitted:', formData)
-    // You can integrate with a form service like Formspree, EmailJS, or your own API
+    setStatus('submitting')
+    setErrorMsg('')
+
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      })
+
+      if (!res.ok) {
+        const data = await res.json()
+        throw new Error(data.error || 'Something went wrong.')
+      }
+
+      setStatus('success')
+      setFormData({ name: '', email: '', whatCallsYou: '', question1: '', question2: '', question3: '' })
+    } catch (err) {
+      setStatus('error')
+      setErrorMsg(err instanceof Error ? err.message : 'Something went wrong. Please try again.')
+    }
   }
 
   const inputClass = "w-full px-4 py-2 border border-cream-dark rounded-md bg-cream-light text-charcoal focus:outline-none focus:ring-2 focus:ring-terracotta focus:border-terracotta"
@@ -139,13 +161,27 @@ export default function InquiryForm() {
         </div>
       </div>
 
-      <div className="text-center">
-        <button
-          type="submit"
-          className="px-8 py-3 bg-terracotta text-cream rounded-md hover:bg-terracotta-dark transition-colors font-medium text-lg"
-        >
-          Submit Inquiry
-        </button>
+      <div className="text-center space-y-4">
+        {status === 'success' ? (
+          <p className="text-green-700 bg-green-50 border border-green-200 rounded-md px-6 py-4 text-lg">
+            Thank you for reaching out. Your inquiry has been sent — we&apos;ll be in touch soon.
+          </p>
+        ) : (
+          <>
+            {status === 'error' && (
+              <p className="text-red-700 bg-red-50 border border-red-200 rounded-md px-6 py-3 text-sm">
+                {errorMsg}
+              </p>
+            )}
+            <button
+              type="submit"
+              disabled={status === 'submitting'}
+              className="px-8 py-3 bg-terracotta text-cream rounded-md hover:bg-terracotta-dark transition-colors font-medium text-lg disabled:opacity-60 disabled:cursor-not-allowed"
+            >
+              {status === 'submitting' ? 'Sending...' : 'Submit Inquiry'}
+            </button>
+          </>
+        )}
       </div>
     </form>
   )

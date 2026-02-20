@@ -11,7 +11,7 @@ const cards = [
   },
   {
     label: 'What',
-    text: '1-1, Liberation Genealogy sessions, accountability and grace work, herbal tea ceremonies, support during hard transitions, help find your way back to you',
+    text: 'One-on-one\, Liberation Genealogy sessions, accountability and grace work, herbal tea ceremonies, support during hard transitions, help find your way back to you',
   },
   {
     label: 'When',

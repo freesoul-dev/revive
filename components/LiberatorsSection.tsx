@@ -30,7 +30,7 @@ const cohorts: Cohort[] = [
       { id: '5',  name: 'James',    photo: '/images/liberators/james.png',    bio: 'Short bio text here...' },
       { id: '6',  name: 'Caprice',  photo: '/images/liberators/caprice.jpeg', bio: 'Short bio text here...' },
       { id: '7',  name: 'Tacumba',  photo: '/images/liberators/tacumba.JPG',  bio: 'Short bio text here...' },
-      { id: '8',  name: 'Shirley',  photo: '/images/liberators/shirley.jpg',  bio: 'Short bio text here...' },
+      { id: '8',  name: 'Shirley',  photo: '/images/liberators/Shirley.jpg',  bio: 'Short bio text here...' },
       { id: '9',  name: 'Yvonne',   photo: '/images/liberators/Yvonne.jpeg',  bio: 'Short bio text here...' },
       { id: '10', name: 'Daphne',   photo: '/images/liberators/daphne.jpg',   bio: 'Short bio text here...' },
       { id: '11', name: 'Onika',    photo: '/images/liberators/onika.jpg',    bio: 'Short bio text here...' },
