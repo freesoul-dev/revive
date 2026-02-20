@@ -26,7 +26,7 @@ export async function POST(request: Request) {
     }
 
     const { error } = await resend.emails.send({
-      from: `rev'ive Inquiry <${RECIPIENT}>`,
+      from: `revive Inquiry <${RECIPIENT}>`,
       to: RECIPIENT,
       replyTo: email,
       subject: `New Inquiry from ${name} — ${offeringLabels[whatCallsYou] ?? whatCallsYou}`,

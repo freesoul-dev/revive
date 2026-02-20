@@ -35,8 +35,10 @@ export default function InquiryForm() {
         body: JSON.stringify(formData),
       })
 
+      const text = await res.text()
+      const data = text ? JSON.parse(text) : {}
+
       if (!res.ok) {
-        const data = await res.json()
         throw new Error(data.error || 'Something went wrong.')
       }
 
