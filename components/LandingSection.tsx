@@ -32,7 +32,7 @@ export default function LandingSection() {
     <section
       id="landing"
       className="relative min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat"
-      style={{ backgroundImage: "url('/images/background.png')" }}
+      style={{ backgroundImage: "url('https://990-agency.b-cdn.net/background.png')" }}
     >
       <Navigation />
 
