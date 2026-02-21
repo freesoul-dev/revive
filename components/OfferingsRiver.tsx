@@ -99,7 +99,7 @@ export default function OfferingsRiver() {
   }, [])
 
   return (
-    <div ref={containerRef} className="relative">
+    <div ref={containerRef} className="relative overflow-hidden">
       <svg
         className="absolute inset-0 w-full h-full pointer-events-none select-none"
         viewBox="0 0 100 300"
