@@ -4,9 +4,9 @@ import { useState, useEffect } from 'react'
 import Navigation from '@/components/Navigation'
 
 const videos = [
-  //'https://990-agency.b-cdn.net/flowers_water.mp4',
-  //'https://990-agency.b-cdn.net/woman_walking.mp4',
-  //'https://990-agency.b-cdn.net/woman_water.mp4',
+  'images/.videos/flowers_water.mov',
+  'images/.videos/woman_walking.mov',
+  'images/.videos/woman_water.mov',
 ]
 
 const VIDEO_INDEX_KEY = 'revive_video_index'
