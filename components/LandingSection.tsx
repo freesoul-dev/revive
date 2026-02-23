@@ -4,9 +4,9 @@ import { useState, useEffect } from 'react'
 import Navigation from '@/components/Navigation'
 
 const videos = [
-  'https://990-agency.b-cdn.net/flowers_water.mp4',
-  'https://990-agency.b-cdn.net/woman_walking.mp4',
-  'https://990-agency.b-cdn.net/woman_water.mp4',
+  //'https://990-agency.b-cdn.net/flowers_water.mp4',
+  //'https://990-agency.b-cdn.net/woman_walking.mp4',
+  //'https://990-agency.b-cdn.net/woman_water.mp4',
 ]
 
 const VIDEO_INDEX_KEY = 'revive_video_index'
@@ -32,7 +32,7 @@ export default function LandingSection() {
     <section
       id="landing"
       className="relative min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat"
-      style={{ backgroundImage: "url('https://990-agency.b-cdn.net/background.png')" }}
+      style={{ backgroundImage: "url('images/background.png')" }}
     >
       <Navigation />
 
